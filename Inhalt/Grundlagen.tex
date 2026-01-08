@@ -1,0 +1,54 @@
+\chapter{Theoretische Grundlagen}
+\label{cha:grundlagen}
+
+Die Analyse und Vorhersage von Basketballwürfen erfordert ein grundlegendes Verständnis sowohl sportwissenschaftlicher als auch physikalischer Zusammenhänge. Dieses Kapitel legt die theoretischen Grundlagen dar, auf denen die weitere Arbeit aufbaut.
+
+Zunächst wird die Sportart Basketball vorgestellt, wobei insbesondere die zentralen Regeln und Rahmenbedingungen thematisiert werden, die für die Analyse von Freiwürfen relevant sind. Dazu gehören beispielsweise Spielfeldmaße, Korbhöhe, die Normen für Ballgröße und -gewicht sowie typische Spielsituationen. Die Berücksichtigung dieser Grundlagen ist entscheidend, da die Ausgangsbedingungen des Spiels maßgeblichen Einfluss auf die Wurfparabel und damit auf die Vorhersagemodelle haben. Dabei gilt es vor allem, die Unterschiede zwischen der Fédération Internationale de Basketball (FIBA) und der National Basketball Association (NBA) zu berücksichtigen.
+
+Darauf aufbauend werden die physikalischen Einflussgrößen vorgestellt, welche die Flugbahn des Balls mitbestimmen. Dazu zählen die Grundparameter jeder Wurfbewegung, wie beispielsweise Gravitation, Abwurfwinkel, Abwurfgeschwindigkeit und Abwurfhöhe. Zusätzlich werden aerodynamische Effekte wie Luftwiderstand und Drall näher betrachtet, da sie die Flugbahn signifikant beeinflussen können. Die präzise Analyse dieser Faktoren ermöglicht ein tieferes Verständnis der Zusammenhänge, die zu einem bestimmten Flugverhalten des Balls führen.
+
+Im Anschluss wird das mathematische Modell beschrieben, das als Grundlage für die weitere Analyse mittels Machine Learning dient. Dieses Modell berücksichtigt die zuvor erläuterten physikalischen Einflussgrößen und bildet die Basis für die Entwicklung und Anwendung von Algorithmen, die zur Untersuchung der formulierten Forschungsfragen eingesetzt werden sollen. Ziel ist es, die theoretischen Konzepte so darzustellen, dass ihre Relevanz für die Untersuchung der Wurfparabel und die spätere Verwendung von Machine-Learning-Methoden klar nachvollziehbar wird. 
+
+Außerdem werden die getroffenen Modellannahmen und bewusst vorgenommenen Vereinfachungen diskutiert. Die Ausklammerung bestimmter Effekte wird begründet, um den Umfang der Arbeit handhabbar zu halten, ohne die Aussagekraft der Ergebnisse unverhältnismäßig zu reduzieren. Schließlich soll durch die Verbindung von sportwissenschaftlichem Wissen, physikalischer Analyse und mathematischer Modellierung ein fundiertes Verständnis geschaffen werden, das die spätere Implementierung von Vorhersagemodellen auf einer soliden Grundlage ermöglicht.
+
+\section{Strukturelle und regeltechnische Grundlagen des Freiwurfs}
+
+\begin{quote}
+``A lot of people say they want to be great, but they’re not willing to make the sacrifices necessary to achieve greatness. They have other concerns … After all, greatness is not for everybody.'' -- \textit{Kobe Bryant}
+\end{quote}
+
+Das einleitende Zitat von Kobe Bryant, einem der erfolgreichsten Basketballspieler aller Zeiten, verdeutlicht, dass sportliche Leistung im Basketball nicht allein auf Talent beruht, sondern in erheblichem Maße von Disziplin, Ausdauer und systematischem Training grundlegender Techniken abhängt. Um diese Leistungen wissenschaftlich analysieren zu können, ist es notwendig, zunächst die zentralen Rahmenbedingungen der Sportart zu verstehen. Im Folgenden werden daher wesentliche Regeln, die Maße von Spielfeld und Korbanlage sowie typische Spielsituationen vorgestellt, die für die Untersuchung des Kernelements dieser Arbeit – des Freiwurfs – von besonderer Relevanz sind.
+
+Die beiden bedeutendsten Organisationen im Basketballsport sind die FIBA und die NBA. Zwischen den Wettbewerben, welche durch diese organisiert werden, bestehen teilweise Unterschiede in den Abmessungen des Spielfeldes oder in spezifischen Spielregeln. Die FIBA fungiert als internationaler Dachverband und ist verantwortlich für weltweite Turniere wie die Basketball-Weltmeisterschaft, die Europameisterschaft sowie die Olympischen Spiele. Die NBA hingegen ist die nationale Profiliga in den Vereinigten Staaten und gilt als die spielstärkste Liga der Welt, in der zahlreiche der besten Athleten aktiv sind. Für die vorliegende Arbeit werden im weiteren Verlauf die grundlegenden Rahmenbedingungen der NBA als Bezugssystem herangezogen. 
+
+Das zentrale Spielelement, um das sich der Kern dieser Untersuchung aufbaut, ist der Freiwurf. Jeder erfolgreiche Freiwurf ist einen Punkt wert und gehört damit zu den wichtigsten standardisierten Abschlussaktionen im modernen Basketball. In einer Studie, in der 490 Spiele der NCAA-Division-I-Basketballliga der Männer ausgewertet wurden, zeigte sich, dass rund 20\,\% aller erzielten Punkte durch Freiwürfe resultierten. Darüber hinaus gewann in 80\,\% der Fälle bei gleichstarken Teams jene Mannschaft, die über die höhere Freiwurfquote verfügte~\cite{kozar1994}. Diese Ergebnisse verdeutlichen die zentrale Bedeutung des Freiwurfs für den Spielausgang im Basketball. Regeltechnisch dient der Freiwurf dem Schutz von Spielern vor übermäßig hartem oder regelwidrigem körperlichem Kontakt. Zu einem oder mehreren Freiwürfen kommt es immer dann, wenn ein Spieler bei dem Versuch einen Korb zu erzielen gefoult wird oder wenn eine Mannschaft durch wiederholte Regelverstöße die sogenannte Teamfoulgrenze überschreitet~\cite{nba_rules}.
+
+Abhängig von der Spielsituation erhält der gefoulte Spieler eine unterschiedliche Anzahl an Würfen: Bei einem unterbrochenen Zwei-Punkte-Wurf erhält er in der Regel zwei Freiwürfe, während bei einem erfolgreichen Korb trotz Foul zusätzlich ein Bonuswurf zugesprochen wird (``and-one''-Situation). Dasselbe Prinzip gilt auch für Drei-Punkte-Würfe. Werden diese trotz Foul nicht erfolgreich abgeschlossen, stehen drei Freiwürfe zu, gelingt der Treffer dennoch, kommt ein zusätzlicher Wurf hinzu. Überschreitet ein Team die Teamfoulgrenze, führt jedes weitere Foul unabhängig von der Spielsituation zu zwei Freiwürfen für den Gegner~\cite{nba_rules}.
+
+Die besten Spieler der Welt treffen den Freiwurf über eine gesamte Saison hinweg mit über 90\,\%. Damit verwandeln sie diesen Abschluss zu dem effizientesten im ganzen Basketball. Teilweise entscheiden sich ganze Spiele dadurch, wie oft ein Team an die Linie kommt und wie effizient sie dort die Freiwürfe verwandeln. Die Relevanz des Freiwurfs und seine Präsenz sind im modernen Basketball kaum noch wegzudenken.
+
+Für die Modellierung des Freiwurfs sind vor allem die geometrischen Maße des Spielfeldes, Korbs und Balls ausschlaggebend. Wie in Abbildung~\ref{fig:nba_court} zu erkennen misst das Spielfeld nach den offiziellen NBA-Regeln 94\,ft in der Länge und 50\,ft in der Breite. Die Korbanlagen sind jeweils mittig an den Grundlinien positioniert, wobei die Vorderfläche des Backboards 4\,ft von der Grundlinie entfernt ist. Das Brett selbst ist rechteckig und misst 6\,ft in der Breite und 3.5\,ft in der Höhe. Es ist in der Regel transparent ausgeführt. Der Ring des Korbs befindet sich 10\,ft (ca. 3.05\,m) über dem Spielfeldboden. Er ist an das Backboard montiert. Der horizontale Abstand zwischen dem Backboard und der Freiwurflinie beträgt 15\,in. Die Normen für den Ball der Männer liegen bei einen Umfang zwischen 75 und 78\,cm und einem Gewicht zwischen 600 und 650\,g. Sein Radius ist als Intervall angegeben und die Oberfläche ist aus Leder und Kunststoff~\cite{nba_rules}.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Bilder/nba_court.png}
+    \caption{Offizielle Maße eines NBA-Spielfelds. \cite{nba_rules}}
+    \label{fig:nba_court}
+\end{figure}
+
+
+\section{Relevante physikalische Kräfte und Parameter beim Freiwurf}
+Die Flugbahn eines Basketballs wird maßgeblich durch eine Vielzahl physikalischer Kräfte und Startbedingungen bestimmt. Neben der Gravitation wirken vor allem aerodynamische Effekte wie Luftwiderstand, Auftrieb und der durch Rotationsbewegungen hervorgerufene Magnus-Effekt. Sie können den Ball in seiner Bewegung stabilisieren oder seine Reichweite beeinflussen. Außerdem spielen die Anfangsbedingungen des Wurfs, wie Abwurfwinkel, Abwurfgeschwindigkeit und Abwurfhöhe eine entscheidende Rolle bei der Bestimmung der Flugbahn.
+
+Für eine präzise Modellierung ist es notwendig, sowohl die grundlegenden Kraftwirkungen als auch die spezifischen Parameter der Wurfbewegung systematisch zu betrachten. Während die Gravitation eine konstante Einflussgröße darstellt, variieren andere Parameter – etwa Spin oder Abwurfhöhe – in Abhängigkeit von der individuellen Technik des Spielers. Diese Variabilität macht es erforderlich, die relevanten physikalischen Größen genau zu definieren und ihre Auswirkungen auf die Flugbahn des Balls zu analysieren. Im Folgenden werden die wichtigsten Kräfte und Parameter erläutert, die für die Modellierung des Freiwurfs von Bedeutung sind.
+
+Die Gravitation ist die primäre Kraft, die auf den Basketball wirkt, sobald er den Spieler verlässt. Sie zieht den Ball mit einer konstanten Beschleunigung von etwa 9.81\,m/s² nach unten. Diese Kraft bestimmt die parabolische Flugbahn des Balls, außer wenn er vertikal hoch oder runter geworfen wird. Sie beeinflusst maßgeblich die Zeit, die der Ball in der Luft verbleibt~\cite{barzykina2017}. Wie in Abbildung~\ref{fig:forces_on_ball} dargestellt, wirkt die Gravitationskraft stets vertikal nach unten und ist unabhängig von der horizontalen Bewegung des Balls. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Bilder/forces-on-basketball.jpg}
+    \caption{Kräfte, die auf einen Basketball während des Freiwurfs wirken. \cite{cruzgarza2014}}
+    \label{fig:forces_on_ball}
+\end{figure}
+
+\section{Mathematische Modellierung des Freiwurfs}
