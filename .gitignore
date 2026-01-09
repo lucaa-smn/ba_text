@@ -30,3 +30,4 @@ Quellen/*
 *.auxlock
 *.dpth
 *.dep
+build/
