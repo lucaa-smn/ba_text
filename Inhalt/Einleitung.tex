@@ -3,7 +3,7 @@
 
 \section{Motivation und Anwendungsszenario}
 In Deutschland ist seit dem Erfolg der Nationalmannschaft bei der Basketball-Weltmeisterschaft 2023 eine deutliche Reichweitensteigerung in der Sportberichterstattung 
-zu beobachten[1]. Das WM-Finale 2023 verfolgten im ZDF im Durchschnitt rund 4,63 Mio. Zuschauerinnen und Zuschauer[2]. Eine solche öffentliche Präsenz kann die Nachfrage 
+zu beobachten~\cite{sinus2025mehralsmedaillen}. Das WM-Finale 2023 verfolgten im ZDF im Durchschnitt rund 4,63 Mio. Zuschauerinnen und Zuschauer~\cite{weis2023topquoten}. Eine solche öffentliche Präsenz kann die Nachfrage 
 nach niedrigschwelligen Einstiegsmöglichkeiten und trainingsbegleitenden Angeboten im Basketball begünstigen. Für frühe, reproduzierbare Erfolgserlebnisse ist dabei 
 insbesondere die Qualität der Wurfausführung entscheidend. Daraus ergibt sich ein praxisrelevantes Ziel: Trainingsprozesse durch datenbasierte, technologische 
 Hilfsmittel so zu unterstützen, dass Wurfleistungen gezielt und nachvollziehbar verbessert werden können. Ein zentraler Ansatzpunkt ist die quantitative Analyse von Ballflugbahnen. 
@@ -22,10 +22,34 @@ Folglich eignet er sich als Untersuchungseinheit dieser Arbeit, um Wurfdaten unt
 Vor diesem Hintergrund eröffnet Maschinelles Lernen einen technologischen Rahmen, um aus Wurfdaten Trajektorien vorherzusagen und Rückschlüsse auf zugrunde liegende 
 Abwurfparameter zu ziehen. Diese Arbeit grenzt sich dabei bewusst von der Fragestellung ab, eine allgemeingültige „optimale“ Flugbahn herzuleiten, 
 die Sportlerinnen und Sportler idealerweise reproduzieren sollten. Im Mittelpunkt steht stattdessen ein personenbezogenes Anwendungsszenario im Sinne 
-einer personalisierten Trainingsassistenz: Auf Basis der Daten eines spezifischen Sportlers bzw. einer spezifischen Sportlerin sollen Modelle individuelle Muster 
+einer personalisierten Trainingsassistenz: Auf Basis der Daten eines spezifischen Sportlers bzw. einer spezifischen Sportlerin soll ein neuronales Netz individuelle Muster 
 identifizieren und daraus sportartspezifisch interpretierbare Hinweise für die Verbesserung ableiten. Der praktische Mehrwert liegt damit nicht in einer normativen 
 Vorgabe, sondern in diagnostischer Unterstützung. Aus den Analysen sollen konkrete, sportartspezifisch interpretierbare Hinweise entstehen.
 
 \section{Zielsetzung und Forschungsfragen}
+Diese Arbeit zielt auf eine datenbasierte Analyse von Basketball-Freiwürfen unter kontrollierten Bedingungen ab. Da kein geeigneter realer Datensatz zur Verfügung 
+steht, wird zunächst ein synthetischer Datensatz erstellt, der 2D-Ballflugbahnen aus einem physikalisch motivierten Bewegungsmodell ableitet. Hierzu wird ein 
+ballistisches Modell implementiert, das zentrale Einflussgrößen des Freiwurfs abbildet und Trajektorien als Funktion relevanter Abwurfparameter generiert. 
+Der Datensatz dient anschließend als definierte Grundlage zur Entwicklung, zum Vergleich und zur Bewertung lernbasierter Verfahren.
+
+Auf dieser Basis werden zwei neuronale Modellansätze konzipiert und experimentell gegenübergestellt. Der erste Ansatz verfolgt eine rein datengetriebene Modellierung, 
+während der zweite Ansatz physikalisches Vorwissen explizit in die Modellierung einbindet, um physikkonsistente Vorhersagen zu begünstigen. Der Vergleich erfolgt 
+entlang dreier Aufgabentypen, die unterschiedliche Aspekte des Problems abdecken:
+\begin{itemize}
+    \item \textbf{Trajektorienvorhersage aus variierenden Eingaberepräsentationen} 
+    \item \textbf{Parameterrekonstruktion als inverse Modellierung} 
+    \item \textbf{Wurfklassifikation der vorhergesagten Trajektorien in die Kategorien „zu kurz“, „Treffer“ und „zu lang“}
+\end{itemize}
+Zur Einordnung der Praxistauglichkeit wird das leistungsstärkste Modell anschließend einer Robustheitsanalyse unterzogen, insbesondere gegenüber Variation der 
+Eingabequalität und Störeinflüssen. Abschließend wird diskutiert, in welchem Umfang sich aus den Modellausgaben interpretierbare Hinweise für eine diagnostische 
+Trainingsassistenz ableiten lassen. Aus diesen Zielen ergeben sich die folgenden Forschungsfragen:
+\begin{itemize}
+    \item \textbf{F1:} In welchem Umfang erlauben synthetisch generierte, physikalisch motivierte Trajektoriendaten eine valide Evaluation von Lernverfahren zur Freiwurf-Analyse?
+    \item \textbf{F2:} Wie wirkt sich die explizite Einbindung physikalischen Vorwissens auf die Leistung in Trajektorienvorhersage, Parameterrekonstruktion und Wurfklassifikation aus?
+    \item \textbf{F3:} Wie sensitiv reagieren die Modelle auf die Qualität und den Informationsgehalt der Eingabedaten, und welchen Einfluss hat dies auf die Vorhersagegenauigkeit?
+    \item \textbf{F4:} Welche modellbasierten Kenngrößen eignen sich, um aus den Analysen nachvollziehbare, sportartspezifisch interpretierbare Empfehlungen im Sinne einer diagnostischen Trainingsassistenz abzuleiten?
+\end{itemize}
+
 
 \section{Aufbau der Arbeit}
+
