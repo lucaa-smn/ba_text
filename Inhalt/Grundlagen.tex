@@ -10,48 +10,61 @@ ballistischen Vorwissens in lernbasierte Modelle konzeptionell zu fundieren. Den
 Klammer für die effiziente Parameterschätzung darstellt.
 
 \section{Ballistisches Modell nach Haußer \& Luchko}
-Im Folgenden wird zunächst das ballistische Modell nach Haußer \& Luchko~\cite{hausser2019} eingeführt, das als physikalischer Ausgangspunkt und Referenz für die in dieser Arbeit 
-untersuchten Wurftrajektorien dient. Sie stellen sich in ihrer Arbeit unter anderem die Aufgabe der Modellierung des Freiwurfs beim Basketball.
-Im Rahmen des Kapitels \enquote{Erstes Modell: Der beste Abwurfwinkel} bearbeiten Sie das folgende Anwendungsproblem: \enquote{Wie sollte ein Basketballspieler 
-einer bestimmten Größe beim Freiwurf den Ball werfen, damit eine größtmögliche Abweichung beim Abwurf immer noch zu einem Treffer führt?}~\cite{hausser2019} Dabei 
-erstellen sie zur Beantwortung ihrer Fragestellung ein ballistisches Modell, das die wesentlichen physikalischen Einflüsse auf die Flugbahn des Balls berücksichtigt. 
-Zur Analyse des Problems stellen Sie vereinfachte Annahmen auf, die im Folgenden kurz zusammengefasst werden:
-\begin{itemize}
-    \item \textbf{1.} \enquote{Nur „Nearly nothing but net“ -Würfe. Damit ist folgendes gemeint: Wir betrachten als mögliche Treffer nur (a) Würfe, bei denen der Ball direkt ins Korbnetz geht (also ohne Berührung des Rings oder des Backboards) oder (b) Würfe, bei denen der Ball die Hinterkante des Ringes trifft und dann direkt ins Netz geht.}~\cite{hausser2019}
-    \item \textbf{2.} \enquote{Vernachlässigung des Luftwiderstandes.}~\cite{hausser2019}
-    \item \textbf{3.} \enquote{Vernachlässigung des Spins. Der Spin des Balls (also das Drehen um die eigene Achse) wird besonders wichtig, wenn der Ball vom Ring oder vom Backboard abprallt, bevor er in den Korb geht. Wegen Annahme 1 können wir auch den Spin vernachlässigen.}~\cite{hausser2019}
-    \item \textbf{4.} \enquote{Kein seitlicher Fehler der Flugbahn. Wir gehen davon aus, dass ein guter Werfer ziemlich genau geradeaus werfen kann.}~\cite{hausser2019}
-    \item \textbf{5.} \enquote{Kein Fehler in der Abwurfgeschwindigkeit.}~\cite{hausser2019}
-    \item \textbf{6.} \enquote{Der ideale Wurf geht durch das Zentrum des Rings.}~\cite{hausser2019}
-\end{itemize} 
+Im Folgenden wird das ballistische Freiwurfmodell nach Haußer und Luchko eingeführt, das in dieser Arbeit als physikalische Referenz sowie als Grundlage zur Generierung 
+synthetischer 2D-Flugbahnen dient. Haußer und Luchko untersuchen im Abschnitt \enquote{Erstes Modell: Der beste Abwurfwinkel} das Problem, wie ein Spieler gegebener 
+Körpergröße den Ball so werfen sollte, dass Abweichungen im Abwurfwinkel möglichst tolerant gegenüber dem Trefferausgang sind.~\cite{hausser2019}
 
-Die relavaten physikalischen Variablen, die zur Beschreibung des Zustandes herangezogen werden, sind der Ort \(s(t)\) und die Geschwindigkeit \(v(t)\) des Balls 
-zur Zeit \(t\). \enquote{Wegen Annahme~4 ist die Bewegung zweidimensional, also
-\( s(t) \in \mathbb{R}^2\)\index{R2@\ensuremath{\mathbb{R}^2}}
-und
-\( v(t) \in \mathbb{R}^2\)\index{R2@\ensuremath{\mathbb{R}^2}},
-und aufgrund von Annahme~3 gibt es keine weiteren Bewegungsfreiheitsgrade des Balls.}~\cite{hausser2019}
-Die Wurfbahn des Balls ergibt sich aus den Newtonschen Bewegungsgleichungen. \(s(t)\) beschreibt den Ort des Ballmittelpunkts zum Zeitpunkt \(t\) und gibt damit die
-Trajektorie des Balls an. Das Modell nimmt an, dass der Ball zum Zeitpunkt \(t=0\) mit einem Abwurfwinkel \(\theta\) und einer (skalaren) Abwurfgeschwindigkeit \(v_0\)
-abgeworfen wird. Die Wurfparabel wird durch die horizontale Komponente \(x(t)\) und die vertikale Komponente \(y(t)\) beschrieben, also \(s(t) = (x(t), y(t))\).
-Nach Annahme 2 bewegt sich der Ball in horizontaler Richtung mit konstanter Geschwindigkeit, d.h. es gilt: \(v_x = v_x^0\). In vertikaler Richtung wirkt die 
-Gravitationskraft \(g\) nach unten auf den Ball: \(\dot{v}_y = -g\). Hier bezeichet der Punkt über einer Variablen die zeitliche Ableitung \(d/dt\) nach der Zeit \(t\).
-Einfach Integration ergbit dann \(v_y = v_y^0-gt\). Wegen \(v(t) = \dot{s}(t)\) ergbit sich durch eine weitere Integration und einsetzen der Anfangsbedingungen 
-\(x(0) = 0\), \(y(0) = 0\) als Lösung die Wurfparabel:
+Zur analytischen Behandlung formulieren Haußer und Luchko ein vereinfachtes Modell und treffen hierzu restriktive Annahmen: Es werden ausschließlich \enquote{nearly 
+nothing but net}-Treffer betrachtet (direkter Netzeintritt oder Kontakt mit der Ringhinterkante mit zusätzlicher Bedingung, dass der Ballmittelpunkt beim Kontakt auf 
+oder unter Ringhöhe liegt). Weiterhin werden Luftwiderstand und Ballspin vernachlässigt, seitliche Abweichungen ausgeschlossen (Reduktion auf eine vertikale Wurfbene) 
+und in diesem ersten Modell die Abwurfgeschwindigkeit als fehlerfrei angenommen. Schließlich wird ein \enquote{Idealwurf} definiert, indem zu jedem Abwurfwinkel 
+zunächst eine Abwurfgeschwindigkeit so gewählt wird, dass die Flugbahn durch das Zentrum des Rings verläuft; anschließend werden bei festem $v_0$ Winkelabweichungen 
+um diesen Idealwurf betrachtet.~\cite{hausser2019}
 
+Die Bewegung wird durch den Ortsvektor $s(t)=(x(t),y(t))^\top\in\mathbb{R}^2$ des Ballmittelpunkts und die Geschwindigkeit $v(t)=\dot{s}(t)=(v_x(t),v_y(t))^\top$ 
+beschrieben.~\cite{hausser2019} Die Koordinatenwahl erfolgt mit Ursprung im Abwurfpunkt ($x(0)=0$, $y(0)=0$); der Korb befindet sich in horizontaler Entfernung $l$ und 
+in vertikaler Höhe $h$ relativ zum Abwurfpunkt. Dabei wird $h$ als Differenz zwischen Korbhöhe $h_\text{Korb}$ und Abwurfhöhe modelliert, wobei Haußer und Luchko die 
+Abwurfhöhe als $\tfrac{5}{4}h_S$ (mit Spielergröße $h_S$) ansetzen, also $h=h_\text{Korb}-\tfrac{5}{4}h_S$. Zusätzlich gehen Ringradius $R_r$, Ballradius $R_b$ sowie 
+die Erdbeschleunigung $g$ als Parameter ein.~\cite{hausser2019}
+
+Unter Vernachlässigung dissipativer Kräfte wirkt auf den Ball lediglich die konstante Gravitationsbeschleunigung in negativer $y$-Richtung. Damit ergibt sich das 
+Anfangswertproblem
+\begin{align}
+\dot{x}(t) &= v_x(t), &
+\dot{y}(t) &= v_y(t), &
+\dot{v}_x(t) &= 0, &
+\dot{v}_y(t) &= -g,
+\end{align}
+mit Anfangsbedingungen
+\begin{align}
+x(0) &= 0, &
+y(0) &= 0, &
+v_x(0) &= v_x^0=v^0\cos\theta^0, &
+v_y(0) &= v_y^0=v^0\sin\theta^0,
+\end{align}
+wobei $\theta^0$ den Abwurfwinkel und $v^0$ die skalare Abwurfgeschwindigkeit bezeichnen. Durch Integration folgen die geschlossenen Lösungen
+\begin{align}
+x(t) &= v_x^0\,t = v^0\cos(\theta^0)\,t,\\
+y(t) &= v_y^0\,t - \frac{1}{2}gt^2 = v^0\sin(\theta^0)\,t - \frac{1}{2}gt^2.
+\end{align}
+
+Für die spätere Winkelanalyse wird der Zeitpunkt $T$ betrachtet, zu dem der Ball die Korbhöhe $h$ erreicht ($y(T)=h$):
 \begin{equation}
-    x(t) = v_x^0(t)= v^0 \cos(\theta) t, t >= 0
+T=\frac{v_y^0+\sqrt{(v_y^0)^2-2gh}}{g},
 \end{equation}
-\begin{equation}
-    y(t) = v_y^0(t) - \frac{1}{2}gt^2 = v^0 \sin(\theta^0) t - \frac{1}{2}gt^2, t >= 0
-\end{equation}
+sofern $(v_y^0)^2\ge 2gh$. In Übereinstimmung mit der Definition des Idealwurfs wählen Haußer und Luchko zu einem gegebenen $\theta^0$ zunächst $v^0$ so, dass die 
+Flugbahn durch das Ringzentrum $(l,h)$ verläuft; daraus ergibt sich eine explizite Zuordnung $v^0=v^0(\theta^0)$.~\cite{hausser2019}
+
+Schließlich werden Treffer im Sinne der \enquote{nearly nothing but net}-Annahme über geometrische Nebenbedingungen relativ zu Ring- und Ballradius 
+operationalisiert (u.\,a.\ Lage des Ballmittelpunkts beim Erreichen der Korbhöhe innerhalb der Ringöffnung sowie Kollisionsfreiheit gegenüber der vorderen Ringkante 
+entlang der Bahn). Diese Bedingungen bilden eine wesentliche Grundlage für die spätere Label-Definition (Kurzwurf/Treffer/Langwurf) und für physikinformierte 
+Nebenbedingungen in lernbasierten Modellen.~\cite{hausser2019}
 
 
+\section{Rekurrente Neurale Netze (RNNs) und LSTMs}
 
-\section{Encoder–Decoder-Architektur für Zeitreihen}
+\section{Encoder–Decoder-Architektur}
 
-\section{LSTM}
-
-\section{Physikinformiertes Lernen \& PINNs}
+\section{Physikinformiertes Lernen (PINNs)}
 
 \section{Amortisierte Inferenz}
